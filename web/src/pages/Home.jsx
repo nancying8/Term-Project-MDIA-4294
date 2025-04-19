@@ -1,12 +1,18 @@
+// import link to able to navigate to other pages
 import { Link } from 'react-router';
+// import global styles and specific styles 'g'
 import g from '../global.module.css';
 
-import bannerImage from '../assets/images/banner-dog.png';
+// import the home page
+// adding the sign in and sign up buttons
+// and the welcome message
 
 function Home() {
 
     return (
-        <main style={{backgroundImage: `url(${bannerImage})`}} className={`${g['container']} ${g["full-width"]} ${g['banner']}`}>
+        <main 
+       
+        className={`${g['container']} ${g["full-width"]} ${g['banner']}`}>
             <div className={`${g['grid-container']} ${g["banner__content"]} ${g["text-center"]}`}>
                 <div className={g['col-12']}>
                     <h1 className={g['h1']}>Welcome to My Little Dogz</h1>

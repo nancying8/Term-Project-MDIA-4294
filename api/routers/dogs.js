@@ -6,7 +6,8 @@ const db = require('../db');
 const upload = require('../storage');
 // Create a new router instance from express to handle routes (specific paths for API requests).
 const router = express.Router();
-
+// Import the authentication middleware 
+const authenticateToken = require("../auth.jwt");
 // Get all dogs
 router.get('/', (req, res) => {
     const sql = 'SELECT dogs.*, categories.name AS category FROM dogs JOIN categories ON dogs.category_id = categories.id';
@@ -37,29 +38,29 @@ router.post('/', upload.single('image'), (req, res) => {
 });
 
 // Update a dog
-router.put('/:id', upload.single('image'), (req, res) => {
+router.put('/:id', upload.single('image'), authenticateToken, (req, res) => {
     const { name, breed, age, category_id } = req.body;
     const image = req.file ? req.file.filename : null;
+    const user_id = req.user.userId; // Get user_id from authenticated token
 
-    // If there's a new image, update the image field
-    let sql = 'UPDATE dogs SET name = ?, breed = ?, age = ?, category_id = ?';
+    // SQL query to update dog
+    let sql = 'UPDATE dogs SET name = ?, breed = ?, age = ?, category_id = ?, user_id = ?';
     
-    // If there's a new image, append it to the update query
     if (image) {
         sql += ', image = ?';
     }
-    sql += ' WHERE id = ?';
+    sql += ' WHERE id = ? AND user_id = ?'; // Ensure the dog belongs to the user
 
-    const values = [name, breed, age, category_id];
+    const values = [name, breed, age, category_id, user_id];
     if (image) {
         values.push(image);
     }
     values.push(req.params.id);
+    values.push(user_id); // Only the user who owns the dog should be able to update it
 
     db.query(sql, values, (err) => {
         if (err) return res.status(500).json({ error: 'Failed to update dog' });
 
-        // Send a proper JSON response instead of just 'OK'
         res.status(200).json({ message: 'Dog updated successfully' });
     });
 });

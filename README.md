@@ -1,4 +1,4 @@
-# Assignment-2-MDIA-4294
+# Term Projects-MDIA-4294
 # Dog Adoption App
 
 ## Description
@@ -11,7 +11,8 @@ This Dog Adoption App allows users to view available dogs for adoption, filter b
 - Add a new dog to the database.
 - Edit details of an existing dog.
 - Delete a dog from the database.
--
+- add sign in and sign out
+- sign out after sucefful sign in / sign up
 
 ## Technologies Used
 - Frontend: React, React Router, CSS Modules, Fetch API.
@@ -31,3 +32,5 @@ This Dog Adoption App allows users to view available dogs for adoption, filter b
     terminal:
             cd web
             npm install; npm run dev
+
+ https://github.com/nancying8/Term-Project-MDIA-4294

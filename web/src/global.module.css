@@ -143,6 +143,7 @@ img {
     border: 1px solid #226f48;
     box-shadow: 3px 3px 0px 0px black;
     padding:0.5rem ;
+    margin-right: 2rem;
 }
 
 .buttonSelect {

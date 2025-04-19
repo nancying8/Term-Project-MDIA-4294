@@ -10,6 +10,8 @@ import g from "../global.module.css";
 // Import dog image
 import dogz from "../assets/images/dog-6.png";
 
+import SignOut from "../components/SignOut";
+
 function AllDogs() {
     // Initialize state to store dogs, categories, and the selected category
     const [dogs, setDogs] = useState([]);
@@ -71,6 +73,7 @@ function AllDogs() {
                         <h1>Adopte Dogz</h1>
                         <h3>Helping Paws Find Loving Homes</h3>
                         <h4>Every Tail Deserves a Happy Tale</h4>
+                        <SignOut />
                     </div>
                     <img src={dogz} alt="banner photo" width={400} />
                 </div>
